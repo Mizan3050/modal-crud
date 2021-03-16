@@ -1,0 +1,23 @@
+<ng-container *ngIf="!isLoggedIn; else elseTemplate">
+    <div class="container-fluid mt-4">
+    <form [formGroup]="employeeLogin" (ngSubmit)="loginEmployee()">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="text" [class.is-invalid]="username.invalid && username.touched" class="form-control"  aria-describedby="emailHelp" formControlName="username">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" [class.is-invalid]="password.invalid && password.touched" class="form-control"  formControlName="password">
+        </div>
+        <button type="submit" class="btn btn-primary mt-2" [disabled]="employeeLogin.invalid">Submit</button>
+        </div>
+        </div>
+      </form>
+    </div> 
+</ng-container>
+<ng-template #elseTemplate>
+    <p style="text-align: center;">You are already logged in</p>
+</ng-template>
+{{employeeLogin.value | json}}

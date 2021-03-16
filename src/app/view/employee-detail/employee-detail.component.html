@@ -1,0 +1,19 @@
+<div class="container mt-4">
+    <div class="row" *ngFor="let employee of employeeDetail">
+        <h1>{{employee.name}}</h1>
+        <hr>
+        <h3>Employee Details</h3>
+        <h4>Username: {{employee?.username | isUndefined}}</h4>
+        <h4>Email: {{employee?.email | isUndefined}}</h4>
+        <h4>Street: {{employee?.address.street | isUndefined}}</h4>
+        <h4>City: {{employee?.address.city | isUndefined}}</h4>
+        <h4>Zipcode: {{employee?.address.zipcode | isUndefined}}</h4>
+        <h4>Phone: {{employee?.phone | isUndefined}}</h4>
+        <h4>Website: {{employee?.website | isUndefined}}</h4>
+        <h4>Company Name: {{employee?.company?.name | isUndefined}}</h4>
+        <h4>Store Type: {{employee?.storeType | isUndefined}}</h4>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+</div>

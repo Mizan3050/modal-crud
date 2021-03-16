@@ -1,0 +1,92 @@
+<div>
+<h2 mat-dialog-title>Add Inventory</h2>
+<form class="form-group mt-4 mb-4" [formGroup]="addEmployeeForm" (ngSubmit)="submitEmployeeData()">
+    <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <mat-radio-group aria-label="Select an option">
+        
+        <mat-radio-button name="storeType"  [value]="radioOptions.dealer" formControlName="storeType" ngDefaultControl [checked]="">Dealer Store</mat-radio-button>
+        
+        <mat-radio-button name="storeType"  [value]="radioOptions.brand"  formControlName="storeType" ngDefaultControl [checked]="">Brand Store</mat-radio-button>
+      </mat-radio-group>
+      <br/>
+      <br/>
+      <input type="file" placeholder="Choose a file">
+      <br/>
+        <div>
+            <label for="name" class="form-label mt-2">Name:</label>
+            <input [class.is-invalid]="name.invalid && name.touched" type="text" class="form-control" id="name" formControlName="name">
+            <div *ngIf = "name.invalid && name.touched">
+                <small *ngIf="name.errors?.required" class="text-danger">name required</small>
+                <small *ngIf="name.errors?.minlength" class="text-danger">Enter atleat 3 characters</small>
+            </div>
+        </div>
+
+        <div>
+            <label for="username" class="form-label">Username:</label>
+            <input [class.is-invalid]="username.invalid && username.touched" type="text" class="form-control" id="username" formControlName="username">
+            <div *ngIf = "username.invalid && username.touched">
+                <small *ngIf="username.errors?.required" class="text-danger">username required</small>
+                <small *ngIf="username.errors?.minlength" class="text-danger mr-2">Enter atleat 3 characters</small>
+                <small *ngIf="username.errors?.pattern" class="text-danger">Enter valid characters</small>
+            </div>
+        </div>  
+
+        <div class="mb-2">
+            <label for="email" class="form-label">Email:</label>
+            <input type="text" class="form-control" id="email" formControlName="email">
+        </div>
+        <div formGroupName = "address">
+
+       
+            <!-- <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" id="city" formControlName="city"> -->
+            <mat-form-field >
+                <mat-label floatLabel='false'>Select City</mat-label>
+                <mat-select formControlName="city">
+                  <mat-option *ngFor="let city of cities" [value]="city.viewValue">
+                    {{city.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        
+
+    </div>
+
+
+        <div formGroupName="company">
+        <div>
+            <!-- <label for="company_name" class="form-label">Company Name</label>
+            <input type="text" class="form-control" id="company_name" formControlName="name"> -->
+            <mat-form-field>
+                <mat-label floatLabel='false'>Select Company</mat-label>
+                <mat-select  formControlName="name">
+                  <mat-option *ngFor="let company of companies" [value]='company.viewValue'>
+                    {{company.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+
+
+        <div>
+            <label for="domain" class="form-label">domain</label>
+            <input type="text" class="form-control" id="domain" formControlName="bs">
+        </div>
+    </div>
+          
+            <button class="btn btn-primary mt-2" type="submit" [disabled]="addEmployeeForm.invalid">{{formState}} Student <fa-icon [icon]="faSpinner" [pulse]="true" *ngIf="loading"></fa-icon></button>
+
+          
+        
+    </div>
+    
+</div>
+    
+</form>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close cdkFocusInitial >Cancel</button>
+  </div>
+</div>
+
